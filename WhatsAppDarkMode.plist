@@ -1,1 +1,1 @@
-{ Filter = { Bundles = ( "net.whatsapp.WhatsApp" ); }; }
+{ Filter = { Bundles = ( "net.whatsapp.WhatsApp", "com.apple.springboard" ); }; }

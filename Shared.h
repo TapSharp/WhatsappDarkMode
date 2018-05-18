@@ -24,3 +24,12 @@ static inline UIView* UA_UIViewWithColor(UIColor *color) {
 
 
 extern NSString *kWhatsappBundleIdentifier;
+extern NSString *kWhatsappDarkModeBundleIdentifier;
+extern NSString* kTwitterUsername;
+extern NSString *kDefaultsFirstLaunchKey;
+
+
+@interface NSUserDefaults (Tweak_Category)
+- (id)objectForKey:(NSString *)key inDomain:(NSString *)domain;
+- (void)setObject:(id)value forKey:(NSString *)key inDomain:(NSString *)domain;
+@end
