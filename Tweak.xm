@@ -416,10 +416,11 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 
 %ctor {
     BOOL blvckIsEnabled = YES;
-    BOOL blvckIsEnabledForWhatsApp = YES;
     BOOL inWhatsAppApp = [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsappBundleIdentifier];
+    BOOL enabledLocally = [[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsDarkModeEnabledKey
+                                                                          inDomain:kWhatsappDarkModeBundleIdentifier] boolValue];
 
-    if (inWhatsAppApp == YES && blvckIsEnabled == YES && blvckIsEnabledForWhatsApp == YES) {
+    if (inWhatsAppApp == YES && blvckIsEnabled == YES && enabledLocally == YES) {
         %init(BLVCK_WHATSAPP_UIKIT);
         %init(BLVCK_WHATSAPP_WATUSI);
         %init(BLVCK_WHATSAPP_VIEWS);

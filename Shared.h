@@ -25,13 +25,30 @@ static inline UIView* UA_UIViewWithColor(UIColor *color) {
 #define UA_iPhoneBlueColor UA_rgb(0, 122, 255)
 
 
+#pragma mark #region [ Notifications Helper ]
+#define AddObserver(notification, callback) \
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)&callback, notification, NULL, \
+		CFNotificationSuspensionBehaviorHold);
+#define PostNotification(notification) \
+CFNotificationCenterPostNotificationWithOptions(CFNotificationCenterGetDarwinNotifyCenter(), \
+notification, NULL, NULL, kCFNotificationDeliverImmediately)
+
+
 extern NSString *kWhatsappBundleIdentifier;
 extern NSString *kWhatsappDarkModeBundleIdentifier;
-extern NSString* kTwitterUsername;
+extern NSString *kTwitterUsername;
 extern NSString *kDefaultsFirstLaunchKey;
+extern NSString *kDefaultsDarkModeEnabledKey;
+extern NSString *kWhatsAppDarkModeBundlePath;
 
 
 @interface NSUserDefaults (Tweak_Category)
 - (id)objectForKey:(NSString *)key inDomain:(NSString *)domain;
 - (void)setObject:(id)value forKey:(NSString *)key inDomain:(NSString *)domain;
+@end
+
+@interface UIApplication (Blvck)
++(id)sharedApplication;
+-(void)_simulateHomeButtonPress;
+-(BOOL)launchApplicationWithIdentifier:(id)arg1 suspended:(BOOL)arg2;
 @end
