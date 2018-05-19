@@ -19,8 +19,10 @@ static inline UIView* UA_UIViewWithColor(UIColor *color) {
 #define UA_grayColor100 UA_rgb(77, 77, 77)
 #define UA_grayColor200 UA_rgb(99, 99, 99)
 #define UA_whiteColor [UIColor whiteColor]
+#define UA_redColor [UIColor redColor]
 #define UA_clearColor [UIColor clearColor]
 #define UA_primaryColor UA_rgb(92, 161, 145)
+#define UA_iPhoneBlueColor UA_rgb(0, 122, 255)
 
 
 extern NSString *kWhatsappBundleIdentifier;

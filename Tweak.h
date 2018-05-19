@@ -21,6 +21,19 @@
 @interface _UIBarBackground: UIView
 @end
 
+@interface UISearchBarTextField: UITextField
+@end
+
+@interface FRFavoriteTableViewCell: UITableViewCell
+@end
+
+@interface _WAChatSessionCellIndicatorsView: UIView {
+    UIImageView *_muteIndicator;
+    UIImageView *_pinIndicator;
+}
+@property(nonatomic, readwrite) BOOL highlighted;
+@end
+
 @interface WAGroupedTableSectionHeaderView: UITableViewHeaderFooterView {
     UIView *_backgroundView;
 }
@@ -68,6 +81,7 @@
 @property(nonatomic, copy, readwrite) WABadgedLabel *nameLabel;
 @property(nonatomic, copy, readwrite) UILabel *senderLabel;
 @property(nonatomic, copy, readwrite) UILabel *timeLabel;
+@property (nonatomic, copy, readwrite) _WAChatSessionCellIndicatorsView *indicatorsView;
 @end
 
 @interface WAAdjustableSeparatorTableViewCell: UITableViewCell
@@ -170,9 +184,6 @@
 @end
 
 @interface WAStatusDetailCell: UITableViewCell {
-    UILabel *_seenCount;
     WALabel *titleLabel;
-    UIImageView *_seenIcon;
-    UIImageView *_forwardRetryButtonImageView;
 }
 @end

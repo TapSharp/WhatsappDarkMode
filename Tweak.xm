@@ -72,6 +72,14 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 %end
 
 %hook UISearchBar
+-(void)layoutSubviews {
+    %orig;
+    UISearchBarTextField *textField = MSHookIvar<UISearchBarTextField *>(self, "_searchField");
+    textField.backgroundColor = UA_blvckColor;
+
+    UIView *bg = MSHookIvar<UIView *>(self, "_background");
+    bg.hidden = YES;
+}
 -(UITextField *)searchField {
     UITextField* field = %orig;
     field.textColor = UA_whiteColor;
@@ -90,6 +98,16 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 -(void)layoutSubviews {
     %orig;
     self.keyboardAppearance = UIKeyboardAppearanceDark;
+}
+%end
+%end
+
+%group BLVCK_WHATSAPP_WATUSI
+%hook FRFavoriteTableViewCell
+-(void)layoutSubviews {
+    %orig;
+    self.textLabel.textColor = UA_whiteColor;
+    self.detailTextLabel.textColor = UA_grayColor200;
 }
 %end
 %end
@@ -205,6 +223,16 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
     self.nameLabel.color = UA_whiteColor;
     self.nameLabel.backgroundColor = UA_clearColor;
     self.activityLabel.backgroundColor = UA_clearColor;
+
+    self.indicatorsView.highlighted = YES;
+
+    UIImageView *_pinIndicator = MSHookIvar<UIImageView *>(self.indicatorsView, "_pinIndicator");
+    _pinIndicator.image = [_pinIndicator.image imageWithRenderingMode: UIImageRenderingModeAlwaysTemplate];
+    [_pinIndicator setTintColor:UA_redColor];
+
+    UIImageView *_muteIndicator = MSHookIvar<UIImageView *>(self.indicatorsView, "_muteIndicator");
+    _muteIndicator.image = [_muteIndicator.image imageWithRenderingMode: UIImageRenderingModeAlwaysTemplate];
+    [_muteIndicator setTintColor:UA_redColor];
 }
 %end
 
@@ -393,6 +421,7 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 
     if (inWhatsAppApp == YES && blvckIsEnabled == YES && blvckIsEnabledForWhatsApp == YES) {
         %init(BLVCK_WHATSAPP_UIKIT);
+        %init(BLVCK_WHATSAPP_WATUSI);
         %init(BLVCK_WHATSAPP_VIEWS);
         %init(BLVCK_WHATSAPP_CONTROLLERS_AND_CLASSES);
     }
