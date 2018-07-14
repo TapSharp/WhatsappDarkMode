@@ -1,6 +1,6 @@
 #import "Shared.h"
 
-NSString* kDefaultsFirstLaunchKey = @"shown_announcement_1";
+NSString* kDefaultsFirstLaunchKey = @"shown_announcement_2";
 NSString *kTwitterUsername = @"neoighodaro";
 NSString *kWhatsappDarkModeBundleIdentifier = @"com.tapsharp.whatsappdarkmode";
 
@@ -28,7 +28,7 @@ NSString *kWhatsappDarkModeBundleIdentifier = @"com.tapsharp.whatsappdarkmode";
     [alertCtrl addAction:[UIAlertAction actionWithTitle:@"Buy me coffee"
                                                 style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction * action) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/neocreativitykills"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/oreogundipe"]];
     }]];
     [self presentViewController:alertCtrl animated:YES completion:nil];
 }
