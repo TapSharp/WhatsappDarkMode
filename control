@@ -1,7 +1,7 @@
 Package: com.tapsharp.whatsappdarkmode
 Name: WhatsApp Dark Mode
 Depends: mobilesubstrate
-Version: 1.0.3
+Version: 1.0.4
 Architecture: iphoneos-arm
 Description: WhatsApp Dark Mode. Perfect for battery life on OLED displays like the iPhone X.
 Maintainer: Neo Ighodaro <neo@creativitykills.co>
