@@ -120,10 +120,20 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 }
 %end
 
+%hook WANoChatsView
+- (void)layoutSubviews {
+    %orig;
+
+    UILabel* _textLabel = MSHookIvar<UILabel *>(self, "_textLabel");
+    _textLabel.textColor = UA_whiteColor;
+}
+%end
+
 %hook WALabel
 - (void)layoutSubviews {
     %orig;
-    self.backgroundColor = UA_clearColor;
+    self.backgroundColor = UA_blvckColor;
+    // self.backgroundColor = UA_clearColor;
 }
 %end
 
@@ -402,10 +412,8 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 -(void) viewDidLoad {
     %orig;
     UIView* _emptyListView = MSHookIvar<UIView *>(self, "_emptyListView");
-    UILabel* _emptyListViewLabel = MSHookIvar<UILabel *>(self, "_emptyListViewLabel");
 
     _emptyListView.backgroundColor = UA_blvckColor;
-    _emptyListViewLabel.textColor = UA_whiteColor;
 
     self.view.backgroundColor = UA_blvckColor;
     self.tableView.backgroundColor = UA_blvckColor;

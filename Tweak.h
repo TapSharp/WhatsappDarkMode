@@ -7,6 +7,11 @@
 @interface WAAutoscrollingLabel: UILabel
 @end
 
+@interface WANoChatsView: UIView {
+    UILabel* _textLabel;
+}
+@end
+
 @interface WALabel: UILabel
 @end
 
