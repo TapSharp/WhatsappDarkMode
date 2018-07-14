@@ -132,8 +132,7 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 %hook WALabel
 - (void)layoutSubviews {
     %orig;
-    self.backgroundColor = UA_blvckColor;
-    // self.backgroundColor = UA_clearColor;
+    self.backgroundColor = UA_clearColor;
 }
 %end
 
