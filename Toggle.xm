@@ -26,11 +26,23 @@ NSString *kWhatsAppDarkModeBundlePath = @"/Library/Application Support/WhatsAppD
     customCell.selectionStyle = UITableViewCellSelectionStyleNone;
     customCell.accessoryView = switchView;
     customCell.imageView.image = iconImage;
+    [rows insertObject:[[%c(WATableRow) alloc] initWithCell:customCell] atIndex:0];
 
-    WATableRow *row = [[%c(WATableRow) alloc] initWithCell:customCell];
+    UITableViewCell *customCell2 = [%c(WATableSection) createCellWithStyle:0];
+    customCell2.textLabel.text = @"PayPal Donation";
+    customCell2.selectionStyle = UITableViewCellSelectionStyleDefault;
+    customCell2.imageView.image = iconImage;
+    [rows insertObject:[[%c(WATableRow) alloc] initWithCell:customCell2] atIndex:1];
 
-    [rows insertObject:row atIndex:0];
     [sectionSettings setRows:rows];
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView  willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/oreogundipe"]];
+    }
+
+    return %orig;
 }
 
 %new
