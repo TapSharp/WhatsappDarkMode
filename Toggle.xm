@@ -12,7 +12,7 @@ NSString *kWhatsAppDarkModeBundlePath = @"/Library/Application Support/WhatsAppD
     NSMutableArray *rows = [sectionSettings.rows mutableCopy];
 
     NSBundle *assets = [[NSBundle alloc] initWithPath:kWhatsAppDarkModeBundlePath];
-    UIImage *iconImage = [UIImage imageNamed:@"icon" inBundle:assets compatibleWithTraitCollection:nil];
+    // UIImage *iconImage = [UIImage imageNamed:@"icon" inBundle:assets compatibleWithTraitCollection:nil];
 
     BOOL enabledLocally = [[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsDarkModeEnabledKey
                                                                       inDomain:kWhatsappDarkModeBundleIdentifier] boolValue];
@@ -25,21 +25,31 @@ NSString *kWhatsAppDarkModeBundlePath = @"/Library/Application Support/WhatsAppD
     customCell.textLabel.text = @"Dark Mode";
     customCell.selectionStyle = UITableViewCellSelectionStyleNone;
     customCell.accessoryView = switchView;
-    customCell.imageView.image = iconImage;
+    customCell.imageView.image = [UIImage imageNamed:@"enabled" inBundle:assets compatibleWithTraitCollection:nil];;
     [rows insertObject:[[%c(WATableRow) alloc] initWithCell:customCell] atIndex:0];
 
     UITableViewCell *customCell2 = [%c(WATableSection) createCellWithStyle:0];
     customCell2.textLabel.text = @"PayPal Donation";
     customCell2.selectionStyle = UITableViewCellSelectionStyleDefault;
-    customCell2.imageView.image = iconImage;
+    customCell2.imageView.image = [UIImage imageNamed:@"paypal" inBundle:assets compatibleWithTraitCollection:nil];
     [rows insertObject:[[%c(WATableRow) alloc] initWithCell:customCell2] atIndex:1];
+
+    UITableViewCell *customCell3 = [%c(WATableSection) createCellWithStyle:0];
+    customCell3.textLabel.text = @"Dark Mode Issues / Suggestions";
+    customCell3.selectionStyle = UITableViewCellSelectionStyleDefault;
+    customCell3.imageView.image = [UIImage imageNamed:@"SettingsTellFriendIcon"];
+    [rows insertObject:[[%c(WATableRow) alloc] initWithCell:customCell3] atIndex:2];
 
     [sectionSettings setRows:rows];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView  willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 1) {
+    if (indexPath.row == 1 && indexPath.section == 3) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/oreogundipe"]];
+    }
+
+    if (indexPath.row == 2 && indexPath.section == 3) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/neoighodaro"]];
     }
 
     return %orig;
