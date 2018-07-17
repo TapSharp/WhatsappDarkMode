@@ -132,6 +132,11 @@
 @interface WAProfilePictureScrollView: UIScrollView
 @end
 
+@interface WAMediaGallerySectionHeaderView: UIView {
+    UILabel* _titleLabel;
+}
+@end
+
 @interface WAContactNameLabel: WABadgedLabel
 @end
 
@@ -146,6 +151,18 @@
 @end
 
 @interface WAContactCardItemTableViewCell: UITableViewCell
+@end
+
+@interface WAChatBackgroundImageView: UIImageView
+@end
+
+@interface WAMessageInfoViewController: UIViewController {
+    WAChatBackgroundImageView* _wallpaperImageView;
+}
+@end
+
+@interface WAMediaGalleryViewController: UIViewController
+@property(nonatomic,readwrite)UICollectionView *collectionView;
 @end
 
 @interface WACallHistoryViewController: UITableViewController {
@@ -183,12 +200,17 @@
 @property(nonatomic, copy, readwrite) UILabel* nameLabel;
 @end
 
-@interface WADiskUsageOverviewCell: UITableViewCell
-@property(nonatomic, copy, readwrite) UILabel* nameTextLabel;
-@property(nonatomic, copy, readwrite) UILabel* sizeTextLabel;
-@end
-
 @interface WAStatusDetailCell: UITableViewCell {
     WALabel *titleLabel;
+}
+@end
+
+@interface WABaseReceiptTableViewCell: UITableViewCell
+@property(nonatomic, copy, readwrite) UILabel* timeLabel;
+@property(nonatomic, copy, readwrite) UILabel* dateLabel;
+@end
+
+@interface WAReceiptTableViewCell: WABaseReceiptTableViewCell {
+    UILabel *nameLabel;
 }
 @end

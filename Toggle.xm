@@ -81,7 +81,9 @@ NSString *kWhatsAppDarkModeBundlePath = @"/Library/Application Support/WhatsAppD
 
 %ctor {
     BOOL featureNowWorks = YES;
-    BOOL inWhatsAppApp = [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsappBundleIdentifier];
+    BOOL inWhatsAppApp = [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsappBundleIdentifier] ||
+        [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsapp2BundleIdentifier] ||
+        [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsapp3BundleIdentifier];
 
     if (inWhatsAppApp == YES && featureNowWorks == YES) {
         %init(WHATSAPP_DARK_MODE_TOGGLE);

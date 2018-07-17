@@ -35,6 +35,8 @@ notification, NULL, NULL, kCFNotificationDeliverImmediately)
 
 
 extern NSString *kWhatsappBundleIdentifier;
+extern NSString *kWhatsapp2BundleIdentifier;
+extern NSString *kWhatsapp3BundleIdentifier;
 extern NSString *kWhatsappDarkModeBundleIdentifier;
 extern NSString *kTwitterUsername;
 extern NSString *kDefaultsFirstLaunchKey;

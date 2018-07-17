@@ -1,6 +1,8 @@
 #import "Tweak.h"
 
 NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
+NSString *kWhatsapp2BundleIdentifier = @"fun.ignition.WhatsApp_Watusi";
+NSString *kWhatsapp3BundleIdentifier = @"com.fouadraheb.watusi";
 
 %group BLVCK_WHATSAPP_UIKIT
 %hook UINavigationController
@@ -310,6 +312,14 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 }
 %end
 
+%hook WAMediaGallerySectionHeaderView
+-(void)layoutSubviews {
+    %orig;
+    UILabel *titleLabel = MSHookIvar<UILabel *>(self, "_titleLabel");
+    titleLabel.textColor = UA_whiteColor;
+}
+%end
+
 %hook WAContactTableViewCell
 -(void)layoutSubviews {
     %orig;
@@ -389,14 +399,6 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 }
 %end
 
-%hook WADiskUsageOverviewCell
--(void)layoutSubviews {
-    %orig;
-    self.nameTextLabel.textColor = UA_whiteColor;
-    self.sizeTextLabel.textColor = UA_grayColor200;
-}
-%end
-
 %hook WAStatusDetailCell
 -(void)layoutSubviews {
     %orig;
@@ -404,9 +406,43 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
     titleLabel.textColor = UA_whiteColor;
 }
 %end
+
+%hook WAReceiptTableViewCell
+-(void) layoutSubviews {
+    %orig;
+    WALabel *nameLabel = MSHookIvar<WALabel *>(self, "_nameLabel");
+    nameLabel.textColor = UA_whiteColor;
+    nameLabel.backgroundColor = UA_blvckColor;
+}
+%end
+
+%hook WABaseReceiptTableViewCell
+-(void)layoutSubviews {
+    %orig;
+    self.dateLabel.textColor = UA_whiteColor;
+    self.dateLabel.backgroundColor = UA_blvckColor;
+    self.timeLabel.textColor = UA_whiteColor;
+    self.timeLabel.backgroundColor = UA_blvckColor;
+}
+%end
 %end
 
 %group BLVCK_WHATSAPP_CONTROLLERS_AND_CLASSES
+%hook WAMessageInfoViewController
+-(void)viewDidLoad {
+    %orig;
+    WAChatBackgroundImageView* imgView = MSHookIvar<WAChatBackgroundImageView*>(self, "_wallpaperImageView");
+    imgView.hidden = YES;
+}
+%end
+
+%hook WAMediaGalleryViewController
+-(void)viewDidLoad {
+    %orig;
+    self.collectionView.backgroundColor = UA_blvckColor;
+}
+%end
+
 %hook WACallHistoryViewController
 -(void) viewDidLoad {
     %orig;
@@ -423,7 +459,9 @@ NSString *kWhatsappBundleIdentifier = @"net.whatsapp.WhatsApp";
 
 %ctor {
     BOOL blvckIsEnabled = YES;
-    BOOL inWhatsAppApp = [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsappBundleIdentifier];
+    BOOL inWhatsAppApp = [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsappBundleIdentifier] ||
+        [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsapp2BundleIdentifier] ||
+        [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsapp3BundleIdentifier];
     BOOL enabledLocally = [[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsDarkModeEnabledKey
                                                                           inDomain:kWhatsappDarkModeBundleIdentifier] boolValue];
 
