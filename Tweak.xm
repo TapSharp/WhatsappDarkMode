@@ -34,6 +34,14 @@ NSString *kWhatsapp3BundleIdentifier = @"com.fouadraheb.watusi";
 }
 %end
 
+%hook UITextView
+- (void)viewDidLoad {
+    %orig;
+    self.backgroundColor = UA_blvckColor;
+    self.textColor = UA_whiteColor;
+}
+%end
+
 %hook _UIBarBackground
 -(void)layoutSubviews {
     %orig;
@@ -143,6 +151,8 @@ NSString *kWhatsapp3BundleIdentifier = @"com.fouadraheb.watusi";
     %orig;
     self.color = UA_whiteColor;
     self.backgroundColor = UA_clearColor;
+    // NSDictionary *attrs = @{NSForegroundColorAttributeName: UA_whiteColor};
+    // self.attributedText = [[NSAttributedString alloc] initWithString:self.text attributes:attrs];
 }
 %end
 

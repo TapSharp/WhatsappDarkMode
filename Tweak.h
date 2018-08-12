@@ -17,6 +17,8 @@
 
 @interface WABadgedLabel: UIView
 @property(nonatomic, copy, readwrite) UIColor *color;
+@property(nonatomic, copy, readwrite) NSString *text;
+@property(nonatomic, copy, readwrite) NSAttributedString *attributedText;
 @end
 
 // -------------------------------------------------------
