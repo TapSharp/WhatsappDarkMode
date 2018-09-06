@@ -35,7 +35,7 @@ NSString *kWhatsAppDarkModeBundlePath = @"/Library/Application Support/WhatsAppD
     [rows insertObject:[[%c(WATableRow) alloc] initWithCell:customCell2] atIndex:1];
 
     UITableViewCell *customCell3 = [%c(WATableSection) createCellWithStyle:0];
-    customCell3.textLabel.text = @"Dark Mode Issues / Suggestions";
+    customCell3.textLabel.text = @"Issues & Suggestions";
     customCell3.selectionStyle = UITableViewCellSelectionStyleDefault;
     customCell3.imageView.image = [UIImage imageNamed:@"SettingsTellFriendIcon"];
     [rows insertObject:[[%c(WATableRow) alloc] initWithCell:customCell3] atIndex:2];
@@ -44,11 +44,13 @@ NSString *kWhatsAppDarkModeBundlePath = @"/Library/Application Support/WhatsAppD
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView  willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 1 && indexPath.section == 3) {
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    if (indexPath.row == 1 && [cell.textLabel.text isEqualToString:@"PayPal Donation"]) { // && indexPath.section == 3) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/oreogundipe"]];
     }
 
-    if (indexPath.row == 2 && indexPath.section == 3) {
+    if (indexPath.row == 2 && [cell.textLabel.text isEqualToString:@"Issues & Suggestions"]) { // && indexPath.section == 3) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/neoighodaro"]];
     }
 
