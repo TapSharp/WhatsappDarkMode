@@ -69,8 +69,8 @@ NSString *kWhatsapp3BundleIdentifier = @"com.fouadraheb.watusi";
 	[self setSelectedBackgroundView: UA_UIViewWithColor(selectedColor)];
 
     // @TODO: Verify in use
-    // UITextField *textField = MSHookIvar<UITextField *>(self, "_editableTextField");
-    // textField.textColor = UA_whiteColor;
+    UITextField *textField = MSHookIvar<UITextField *>(self, "_editableTextField");
+    textField.textColor = UA_whiteColor;
 }
 %end
 
