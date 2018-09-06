@@ -1,21 +1,21 @@
 #import "Shared.h"
 
-NSString* kDefaultsFirstLaunchKey = @"shown_announcement_5";
+NSString* kDefaultsFirstLaunchKey = @"shown_announcement_7";
 NSString *kTwitterUsername = @"neoighodaro";
 NSString *kWhatsappDarkModeBundleIdentifier = @"com.tapsharp.whatsappdarkmode";
 
-@interface WAChatListViewController: UIViewController
+@interface WANavigationController: UIViewController
 - (void)openTwitterAccount:(NSString *)username;
 @end
 
 %group NEW_INSTALLATION_WELCOME
-%hook WAChatListViewController
--(void)viewDidLoad {
+%hook WANavigationController
+-(void)viewDidAppear:(BOOL)animated {
     %orig;
     NSString *message = @"Thanks for installing WhatsApp Dark Mode.\n\n If you have any suggestions or bugs to report "
                         "send it to me on Twitter. This tweak is free but you can always consider donating a dollar "
                         "or more and following me on Twitter for updates.";
-
+UA_log(@"Sample");
     UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"Welcome!"
                                                                     message:message
                                                                 preferredStyle:UIAlertControllerStyleAlert];
