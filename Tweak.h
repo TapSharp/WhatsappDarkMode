@@ -212,7 +212,7 @@
 @property(nonatomic, copy, readwrite) UILabel* dateLabel;
 @end
 
-@interface WAReceiptTableViewCell: WABaseReceiptTableViewCell {
-    UILabel *nameLabel;
-}
+@interface WAReceiptTableViewCell: WABaseReceiptTableViewCell
+@property(nonatomic, copy, readwrite) UILabel* messageStatusLabel;
+@property(nonatomic, copy, readwrite) UILabel* messageStatusIcon;
 @end

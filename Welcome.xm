@@ -1,6 +1,6 @@
 #import "Shared.h"
 
-NSString* kDefaultsFirstLaunchKey = @"shown_announcement_4";
+NSString* kDefaultsFirstLaunchKey = @"shown_announcement_5";
 NSString *kTwitterUsername = @"neoighodaro";
 NSString *kWhatsappDarkModeBundleIdentifier = @"com.tapsharp.whatsappdarkmode";
 

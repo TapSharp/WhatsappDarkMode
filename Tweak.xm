@@ -420,9 +420,9 @@ NSString *kWhatsapp3BundleIdentifier = @"com.fouadraheb.watusi";
 %hook WAReceiptTableViewCell
 -(void) layoutSubviews {
     %orig;
-    WALabel *nameLabel = MSHookIvar<WALabel *>(self, "_nameLabel");
-    nameLabel.textColor = UA_whiteColor;
-    nameLabel.backgroundColor = UA_blvckColor;
+    self.messageStatusLabel.textColor = UA_whiteColor;
+    self.messageStatusLabel.backgroundColor = UA_blvckColor;
+    self.messageStatusIcon.backgroundColor = UA_blvckColor;
 }
 %end
 
