@@ -12,10 +12,15 @@ NSString *kWhatsappDarkModeBundleIdentifier = @"com.tapsharp.whatsappdarkmode";
 %hook WANavigationController
 -(void)viewDidAppear:(BOOL)animated {
     %orig;
+    NSNumber *shownMessage = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsFirstLaunchKey
+                                                                        inDomain:kWhatsappDarkModeBundleIdentifier];
+
+    if (shownMessage != 0) return;
+
     NSString *message = @"Thanks for installing WhatsApp Dark Mode.\n\n If you have any suggestions or bugs to report "
                         "send it to me on Twitter. This tweak is free but you can always consider donating a dollar "
                         "or more and following me on Twitter for updates.";
-UA_log(@"Sample");
+
     UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"Welcome!"
                                                                     message:message
                                                                 preferredStyle:UIAlertControllerStyleAlert];
