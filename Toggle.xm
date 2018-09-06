@@ -46,11 +46,11 @@ NSString *kWhatsAppDarkModeBundlePath = @"/Library/Application Support/WhatsAppD
 - (NSIndexPath *)tableView:(UITableView *)tableView  willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
 
-    if (indexPath.row == 1 && [cell.textLabel.text isEqualToString:@"PayPal Donation"]) { // && indexPath.section == 3) {
+    if (indexPath.row == 1 && [cell.textLabel.text isEqualToString:@"PayPal Donation"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/oreogundipe"]];
     }
 
-    if (indexPath.row == 2 && [cell.textLabel.text isEqualToString:@"Issues & Suggestions"]) { // && indexPath.section == 3) {
+    if (indexPath.row == 2 && [cell.textLabel.text isEqualToString:@"Issues & Suggestions"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/neoighodaro"]];
     }
 
