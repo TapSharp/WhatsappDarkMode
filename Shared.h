@@ -41,6 +41,7 @@ extern NSString *kWhatsappDarkModeBundleIdentifier;
 extern NSString *kTwitterUsername;
 extern NSString *kDefaultsFirstLaunchKey;
 extern NSString *kDefaultsDarkModeEnabledKey;
+extern NSString *kDefaultsDarkModeAutoEnabledKey;
 extern NSString *kWhatsAppDarkModeBundlePath;
 
 

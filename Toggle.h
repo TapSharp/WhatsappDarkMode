@@ -22,4 +22,6 @@
      WATableSection *_sectionSettings;
 }
 - (void)darkModeSwitchToggled:(id)sender;
+- (void)autoDarkModeSwitchToggled:(id)sender;
+- (UIAlertController*)restartAlert:(BOOL)enabled;
 @end

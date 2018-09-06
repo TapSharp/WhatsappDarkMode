@@ -468,14 +468,27 @@ NSString *kWhatsapp3BundleIdentifier = @"com.fouadraheb.watusi";
 %end
 
 %ctor {
-    BOOL blvckIsEnabled = YES;
     BOOL inWhatsAppApp = [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsappBundleIdentifier] ||
         [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsapp2BundleIdentifier] ||
         [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:kWhatsapp3BundleIdentifier];
-    BOOL enabledLocally = [[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsDarkModeEnabledKey
-                                                                          inDomain:kWhatsappDarkModeBundleIdentifier] boolValue];
 
-    if (inWhatsAppApp == YES && blvckIsEnabled == YES && enabledLocally == YES) {
+    BOOL enabled = [[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsDarkModeEnabledKey
+                                                               inDomain:kWhatsappDarkModeBundleIdentifier] boolValue];
+
+    BOOL autoEnabled = [[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsDarkModeAutoEnabledKey
+                                                                   inDomain:kWhatsappDarkModeBundleIdentifier] boolValue];
+
+    if (inWhatsAppApp == YES && enabled == YES) {
+        if (autoEnabled == YES) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH.mm"];
+
+            NSString *strCurrentTime = [dateFormatter stringFromDate:[NSDate date]];
+            if ([strCurrentTime floatValue]  >= 7.00 && [strCurrentTime floatValue] <= 19.00) {
+                return;
+            }
+        }
+
         %init(BLVCK_WHATSAPP_UIKIT);
         %init(BLVCK_WHATSAPP_WATUSI);
         %init(BLVCK_WHATSAPP_VIEWS);
